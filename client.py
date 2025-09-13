@@ -41,10 +41,14 @@ def receive():
 font_win = font.Font(None, 72)
 font_main = font.Font(None, 36)
 # --- ЗОБРАЖЕННЯ ----
-ball_img = image.load("Baseball__crop_-removebg-preview.png")
+ball_img = image.load("dark-round-moon-multiple-craters-vector-illustration-design-using-ai-tool-moon-crater-clipart-372054466-removebg-preview.png")
 ball_img = transform.scale(ball_img, (20, 20))
 # --- ЗВУКИ ---
-
+mixer.music.load("music/bg2.mp3")
+mixer.music.set_volume(0.5)
+mixer.music.play(-1)
+ball_bounce_sound = mixer.Sound("music/BounceYoFrankie.flac")
+ball_bounce_sound.set_volume(1.1)
 # --- ГРА ---
 game_over = False
 winner = None

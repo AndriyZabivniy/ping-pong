@@ -41,10 +41,14 @@ def receive():
 font_win = font.Font(None, 72)
 font_main = font.Font(None, 36)
 # --- ЗОБРАЖЕННЯ ----
-ball_img = image.load("Baseball__crop_-removebg-preview.png")
-ball_img = transform.scale(ball_img, (20, 20))
+ball_img = image.load("dark-round-moon-multiple-craters-vector-illustration-design-using-ai-tool-moon-crater-clipart-372054466-removebg-preview.png")
+ball_img = transform.scale(ball_img, (27, 27))
 # --- ЗВУКИ ---
-
+mixer.music.load("music/bg2.mp3")
+mixer.music.set_volume(0.5)
+mixer.music.play(-1)
+ball_bounce_sound = mixer.Sound("music/BounceYoFrankie.flac")
+ball_bounce_sound.set_volume(1.1)
 # --- ГРА ---
 game_over = False
 winner = None
@@ -89,6 +93,7 @@ while True:
         continue  # Блокує гру після перемоги
 
     if game_state:
+
         screen.fill((30, 30, 30))
         draw.rect(screen, (0, 255, 0), (20, game_state['paddles']['0'], 20, 100))
         draw.rect(screen, (255, 0, 255), (WIDTH - 40, game_state['paddles']['1'], 20, 100))
@@ -100,10 +105,10 @@ while True:
         if game_state['sound_event']:
             if game_state['sound_event'] == 'wall_hit':
                 # звук відбиття м'ячика від стін
-                pass
+                ball_bounce_sound.play()
             if game_state['sound_event'] == 'platform_hit':
                 # звук відбиття м'ячика від платформи
-                pass
+                ball_bounce_sound.play()
 
     else:
         wating_text = font_main.render(f"Очікування гравців...", True, (255, 255, 255))
